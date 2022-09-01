@@ -1,9 +1,13 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
+import { useState } from 'react';
 import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
+  const [env, setEnv] = useState<string>('http://localhost:3000/api/connect');
+  console.log(env);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -13,15 +17,54 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <form
-          // action="https://mcva-lti-vercel.vercel.app/api/connect"
-          action="http://localhost:3000/api/connect"
-          // action="https://mcva-lti-demo.vercel.app/api/connect"
-          method="POST"
-          target="_blank"
-        >
-          <input type="text" name="firstName" placeholder="First Name" />
-          <input type="text" name="lastName" placeholder="Last Name" />
+        <div>
+          Select Environment
+          <select
+            onChange={(e) => {
+              setEnv(e.target.value);
+            }}
+            defaultValue="http://localhost:3000/api/connect"
+          >
+            <option value="http://localhost:3000/api/connect">Local</option>
+            <option value="https://mp2i4na6i3.ap-northeast-1.awsapprunner.com/api/connect">
+              Dev
+            </option>
+            <option value="https://pjuzs3gntf.ap-northeast-1.awsapprunner.com/api/connect">
+              Staging
+            </option>
+          </select>
+        </div>
+        <form action={env} method="POST" target="_blank">
+          <input type="text" name="user_id" placeholder="mcvid" />
+          <input type="text" name="mcv_student_id" placeholder="studentId" />
+          <input
+            type="text"
+            name="mcv_person_firstname_th"
+            placeholder="firstName"
+          />
+          <input
+            type="text"
+            name="mcv_person_lastname_th"
+            placeholder="lastName"
+          />
+          <input
+            type="text"
+            name="mcv_course_cv_cid"
+            placeholder="courseNumber"
+          />
+          <input type="text" name="roles" placeholder="Role" />
+          <input
+            type="text"
+            name="mcv_course_semester"
+            placeholder="courseSemester"
+          />
+          <input type="text" name="mcv_course_year" placeholder="courseYear" />
+          <input type="text" name="context_title" placeholder="courseName" />
+          <input
+            type="text"
+            name="context_label"
+            placeholder="courseShortName"
+          />
           <button type="submit">
             Launch My Course Ville Assessment Platform
           </button>
