@@ -49,9 +49,10 @@ const Home: NextPage = () => {
           />
           <input
             type="text"
-            name="mcv_course_cv_cid"
+            name="mcv_course_courseno"
             placeholder="courseNumber"
           />
+          <input type="text" name="mcv_course_cv_cid" placeholder="courseId" />
           <input type="text" name="roles" placeholder="Role" />
           <input
             type="text"
