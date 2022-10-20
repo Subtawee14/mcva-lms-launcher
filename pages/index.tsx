@@ -32,6 +32,9 @@ const Home: NextPage = () => {
             <option value="https://pjuzs3gntf.ap-northeast-1.awsapprunner.com/api/connect">
               Staging
             </option>
+            <option value="https://kqrstchpx2.ap-northeast-1.awsapprunner.com/api/connect">
+              Preprod
+            </option>
           </select>
         </div>
         <form action={env} method="POST" target="_blank">
