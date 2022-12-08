@@ -22,7 +22,7 @@ const UserList = () => {
           <li key={user.id}>
             <Row className="p-3 bg-white rounded-lg shadow-lg justify-between">
               <a className="mr-5" onClick={() => onSelect(user.id)}>
-                {user.mcv_person_firstname_th} - {user.role}
+                {user.mcv_person_firstname_th} - {user.roles}
               </a>
               <button
                 onClick={() => onDelete(user.id)}

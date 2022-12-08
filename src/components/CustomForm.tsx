@@ -17,25 +17,30 @@ const CustomForm: React.FC = () => {
       alert('Please select environment');
       return;
     }
+    const values = form.getFieldsValue();
+
     const hiddenForm = document.getElementById(
       'hidden-form'
     ) as HTMLFormElement;
-    const values = form.getFieldsValue();
-
-    hiddenForm?.setAttribute('action', currentEnvironment);
-    hiddenForm?.setAttribute('method', 'POST');
-    hiddenForm?.setAttribute('target', '_blank');
+    hiddenForm.setAttribute('action', currentEnvironment);
+    hiddenForm.setAttribute('method', 'POST');
+    hiddenForm.setAttribute('target', '_blank');
     Object.keys(values).forEach((key) => {
-      console.log('value', key, values[key]);
-      const hiddenField = document.createElement('input');
-      hiddenField.setAttribute('type', 'hidden');
-      hiddenField.setAttribute('name', key);
-      hiddenField.setAttribute('value', values[key]);
-      hiddenForm?.appendChild(hiddenField);
+      let hiddenInput = document.getElementsByName(key)[0];
+      console.log('hiddenInput', hiddenInput);
+      if (!hiddenInput) {
+        hiddenInput = document.createElement('input');
+        hiddenInput.setAttribute('type', 'hidden');
+        hiddenInput.setAttribute('name', key);
+        hiddenInput.setAttribute('value', values[key]);
+        hiddenForm.appendChild(hiddenInput);
+      } else {
+        hiddenInput.setAttribute('value', values[key]);
+      }
     });
 
-    hiddenForm?.submit();
-    hiddenForm?.remove();
+    hiddenForm.submit();
+    hiddenForm.reset();
   };
 
   const addToList = () => {
@@ -66,16 +71,16 @@ const CustomForm: React.FC = () => {
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 12 }}
         layout="horizontal"
-        initialValues={{ roles: 'STUDENT' }}
+        initialValues={{
+          roles: 'STUDENT',
+          environment: 'http://localhost:3000/api/connect',
+        }}
         size="middle"
         onFinish={onSubmit}
         onFinishFailed={() => alert('Please fill all required fields')}
       >
         <Form.Item label="Environment" name="environment" required>
-          <Radio.Group
-            onChange={onEnvironmentChange}
-            defaultValue="http://localhost:3000/api/connect"
-          >
+          <Radio.Group onChange={onEnvironmentChange}>
             <Radio.Button value="http://localhost:3000/api/connect">
               Local
             </Radio.Button>
