@@ -17,7 +17,9 @@ const CustomForm: React.FC = () => {
       alert('Please select environment');
       return;
     }
-    const hiddenForm = document.getElementById('hidden-form');
+    const hiddenForm = document.getElementById(
+      'hidden-form'
+    ) as HTMLFormElement;
     const values = form.getFieldsValue();
 
     hiddenForm?.setAttribute('action', currentEnvironment);
