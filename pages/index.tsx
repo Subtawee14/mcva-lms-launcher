@@ -6,7 +6,7 @@ import UserList from '../src/components/UserList';
 const { Header, Content } = Layout;
 
 const App: React.FC = () => (
-  <Layout>
+  <Layout className="h-screen">
     <Header>
       <div className="w-100">
         <p className="text-white font-bold">
