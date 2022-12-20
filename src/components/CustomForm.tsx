@@ -22,9 +22,9 @@ const CustomForm: React.FC = () => {
     const hiddenForm = document.getElementById(
       'hidden-form'
     ) as HTMLFormElement;
-    hiddenForm.setAttribute('action', currentEnvironment);
-    hiddenForm.setAttribute('method', 'POST');
-    hiddenForm.setAttribute('target', '_blank');
+    // hiddenForm.setAttribute('action', currentEnvironment);
+    // hiddenForm.setAttribute('method', 'POST');
+    // hiddenForm.setAttribute('target', '_blank');
     Object.keys(values).forEach((key) => {
       let hiddenInput = document.getElementsByName(key)[0];
       console.log('hiddenInput', hiddenInput);
@@ -143,7 +143,12 @@ const CustomForm: React.FC = () => {
           </Button>
         </Form.Item>
       </Form>
-      <form id="hidden-form"></form>
+      <form
+        id="hidden-form"
+        method="POST"
+        target="_blank"
+        action={currentEnvironment}
+      ></form>
     </>
   );
 };
