@@ -84,7 +84,7 @@ const CustomForm: React.FC = () => {
             <Radio.Button value="http://localhost:3000/api/connect">
               Local
             </Radio.Button>
-            <Radio.Button value="https://hsvbmk77ca.ap-northeast-1.awsapprunner.com/api/connect">
+            <Radio.Button value="https://dev-map.mycourseville.com/api/connect">
               Dev
             </Radio.Button>
             <Radio.Button value="https://p3szvpacmm.ap-northeast-1.awsapprunner.com/api/connect">
