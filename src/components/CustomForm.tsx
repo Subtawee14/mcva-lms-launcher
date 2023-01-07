@@ -84,10 +84,10 @@ const CustomForm: React.FC = () => {
             <Radio.Button value="http://localhost:3000/api/connect">
               Local
             </Radio.Button>
-            <Radio.Button value="https://mp2i4na6i3.ap-northeast-1.awsapprunner.com/api/connect">
+            <Radio.Button value="https://hsvbmk77ca.ap-northeast-1.awsapprunner.com/api/connect">
               Dev
             </Radio.Button>
-            <Radio.Button value="https://pjuzs3gntf.ap-northeast-1.awsapprunner.com/api/connect">
+            <Radio.Button value="https://p3szvpacmm.ap-northeast-1.awsapprunner.com/api/connect">
               Staging
             </Radio.Button>
             <Radio.Button value="https://kqrstchpx2.ap-northeast-1.awsapprunner.com/api/connect">
