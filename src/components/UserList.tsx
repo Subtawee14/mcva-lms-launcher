@@ -20,7 +20,7 @@ const UserList = () => {
       <ul>
         {users.map((user: any) => (
           <li key={user.id}>
-            <Row className="p-3 bg-white rounded-lg shadow-lg justify-between">
+            <Row className="p-3 bg-white rounded-lg shadow-lg justify-between mb-1">
               <a className="mr-5" onClick={() => onSelect(user.id)}>
                 {user.mcv_person_firstname_th} - {user.roles}
               </a>

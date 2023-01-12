@@ -22,9 +22,6 @@ const CustomForm: React.FC = () => {
     const hiddenForm = document.getElementById(
       'hidden-form'
     ) as HTMLFormElement;
-    // hiddenForm.setAttribute('action', currentEnvironment);
-    // hiddenForm.setAttribute('method', 'POST');
-    // hiddenForm.setAttribute('target', '_blank');
     Object.keys(values).forEach((key) => {
       let hiddenInput = document.getElementsByName(key)[0];
       console.log('hiddenInput', hiddenInput);
@@ -87,10 +84,10 @@ const CustomForm: React.FC = () => {
             <Radio.Button value="https://dev-map.mycourseville.com/api/connect">
               Dev
             </Radio.Button>
-            <Radio.Button value="https://p3szvpacmm.ap-northeast-1.awsapprunner.com/api/connect">
+            <Radio.Button value="https://staging-map.mycourseville.com/api/connect">
               Staging
             </Radio.Button>
-            <Radio.Button value="https://kqrstchpx2.ap-northeast-1.awsapprunner.com/api/connect">
+            <Radio.Button value="https://preprod-map.mycourseville.com/api/connect">
               Preprod
             </Radio.Button>
           </Radio.Group>
