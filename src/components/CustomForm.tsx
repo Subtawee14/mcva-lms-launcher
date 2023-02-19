@@ -111,7 +111,7 @@ const CustomForm: React.FC = () => {
           <Input />
         </Form.Item>
         <Form.Item label="Role" name="roles" required>
-          <Radio.Group onChange={onEnvironmentChange}>
+          <Radio.Group>
             <Radio.Button value="STUDENT">STUDENT</Radio.Button>
             <Radio.Button value="INSTRUCTOR">INSTRUCTOR</Radio.Button>
           </Radio.Group>
