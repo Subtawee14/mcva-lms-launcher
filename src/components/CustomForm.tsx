@@ -110,11 +110,11 @@ const CustomForm: React.FC = () => {
         <Form.Item label="Course ID" name="mcv_course_cv_cid" required>
           <Input />
         </Form.Item>
-        <Form.Item label="Role" name="roles">
-          <Select>
-            <Select.Option value="STUDENT">STUDENT</Select.Option>
-            <Select.Option value="INSTRUCTOR">INSTRUCTOR</Select.Option>
-          </Select>
+        <Form.Item label="Role" name="roles" required>
+          <Radio.Group onChange={onEnvironmentChange}>
+            <Radio.Button value="STUDENT">STUDENT</Radio.Button>
+            <Radio.Button value="INSTRUCTOR">INSTRUCTOR</Radio.Button>
+          </Radio.Group>
         </Form.Item>
         <Form.Item label="Course Semester" name="mcv_course_semester" required>
           <Input />
