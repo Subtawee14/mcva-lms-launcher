@@ -3,6 +3,7 @@ import { Button, Form, Input, Radio, Select } from 'antd';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { currentUserState, userListState } from '../recoil/atom';
 import { v4 } from 'uuid';
+import * as jose from 'jose';
 
 const CustomForm: React.FC = () => {
   const [form] = Form.useForm();
@@ -18,23 +19,31 @@ const CustomForm: React.FC = () => {
       return;
     }
     const values = form.getFieldsValue();
+    console.log(values);
+
+    const secret = new TextEncoder().encode('secret-bo-be-assigned');
+
+    const token = await new jose.SignJWT(values)
+      .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
+      .sign(secret);
+
+    console.log(token);
 
     const hiddenForm = document.getElementById(
       'hidden-form'
     ) as HTMLFormElement;
-    Object.keys(values).forEach((key) => {
-      let hiddenInput = document.getElementsByName(key)[0];
-      console.log('hiddenInput', hiddenInput);
-      if (!hiddenInput) {
-        hiddenInput = document.createElement('input');
-        hiddenInput.setAttribute('type', 'hidden');
-        hiddenInput.setAttribute('name', key);
-        hiddenInput.setAttribute('value', values[key]);
-        hiddenForm.appendChild(hiddenInput);
-      } else {
-        hiddenInput.setAttribute('value', values[key]);
-      }
-    });
+
+    let hiddenInput = document.getElementsByName('token')[0];
+    console.log('hiddenInput', hiddenInput);
+    if (!hiddenInput) {
+      hiddenInput = document.createElement('input');
+      hiddenInput.setAttribute('type', 'hidden');
+      hiddenInput.setAttribute('name', 'token');
+      hiddenInput.setAttribute('value', token);
+      hiddenForm.appendChild(hiddenInput);
+    } else {
+      hiddenInput.setAttribute('value', token);
+    }
 
     hiddenForm.submit();
     hiddenForm.reset();
