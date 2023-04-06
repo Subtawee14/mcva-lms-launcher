@@ -21,7 +21,7 @@ const CustomForm: React.FC = () => {
     const values = form.getFieldsValue();
     console.log(values);
 
-    const secret = new TextEncoder().encode('secret-bo-be-assigned');
+    const secret = new TextEncoder().encode('A7gCEXQgGP7WAqWF8pq');
 
     const token = await new jose.SignJWT(values)
       .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
