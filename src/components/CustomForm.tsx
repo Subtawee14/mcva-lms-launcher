@@ -19,7 +19,7 @@ const CustomForm: React.FC = () => {
       return;
     }
     const values = form.getFieldsValue();
-    console.log(values);
+    console.log('values', values);
 
     const secret = new TextEncoder().encode('A7gCEXQgGP7WAqWF8pq');
 
@@ -27,13 +27,12 @@ const CustomForm: React.FC = () => {
       .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
       .sign(secret);
 
-    console.log(token);
-
     const hiddenForm = document.getElementById(
       'hidden-form'
     ) as HTMLFormElement;
 
     let hiddenInput = document.getElementsByName('token')[0];
+    hiddenForm.setAttribute('action', values.environment);
     console.log('hiddenInput', hiddenInput);
     if (!hiddenInput) {
       hiddenInput = document.createElement('input');
@@ -54,13 +53,10 @@ const CustomForm: React.FC = () => {
     setUsers((users: any) => [...users, { id: v4(), ...values }]);
   };
 
-  const updateFormValues = useCallback(() => {
+  useEffect(() => {
+    console.log('currentUser', currentUser);
     form.setFieldsValue(currentUser);
   }, [currentUser, form]);
-
-  useEffect(() => {
-    updateFormValues();
-  }, [currentUser, updateFormValues]);
 
   const clearForm = () => {
     form.resetFields();
@@ -98,6 +94,9 @@ const CustomForm: React.FC = () => {
             </Radio.Button>
             <Radio.Button value="https://preprod-map.mycourseville.com/api/connect">
               Preprod
+            </Radio.Button>
+            <Radio.Button value="https://map.mycourseville.com/api/connect">
+              Prod
             </Radio.Button>
           </Radio.Group>
         </Form.Item>
@@ -149,12 +148,7 @@ const CustomForm: React.FC = () => {
           </Button>
         </Form.Item>
       </Form>
-      <form
-        id="hidden-form"
-        method="POST"
-        target="_blank"
-        action={currentEnvironment}
-      ></form>
+      <form id="hidden-form" method="POST" target="_blank"></form>
     </>
   );
 };
