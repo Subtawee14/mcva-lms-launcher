@@ -93,7 +93,7 @@ const CustomForm: React.FC = () => {
             <Radio.Button value="https://staging-map.mycourseville.com/api/connect">
               Staging
             </Radio.Button>
-            <Radio.Button value="https://preprod-map.mycourseville.com/api/connect">
+            <Radio.Button value="https://preprod-map.mycourseville.com/api/connect" disabled>
               Preprod
             </Radio.Button>
             <Radio.Button value="https://map.mycourseville.com/api/connect" disabled>
