@@ -86,7 +86,8 @@ const CustomForm: React.FC = () => {
             <Radio.Button value="http://localhost:3000/api/connect">
               Local
             </Radio.Button>
-            <Radio.Button value="https://dev-map.mycourseville.com/api/connect">
+            <Radio.Button value="https://epbeqhq3ef.ap-southeast-1.awsapprunner.com/api/connect">
+            {/* <Radio.Button value="https://dev-map.mycourseville.com/api/connect"> */}
               Dev
             </Radio.Button>
             <Radio.Button value="https://staging-map.mycourseville.com/api/connect">
@@ -95,7 +96,7 @@ const CustomForm: React.FC = () => {
             <Radio.Button value="https://preprod-map.mycourseville.com/api/connect">
               Preprod
             </Radio.Button>
-            <Radio.Button value="https://map.mycourseville.com/api/connect">
+            <Radio.Button value="https://map.mycourseville.com/api/connect" disabled>
               Prod
             </Radio.Button>
           </Radio.Group>
