@@ -1,47 +1,48 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { Button, Form, Input, Radio, Select } from 'antd';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { currentUserState, userListState } from '../recoil/atom';
-import { v4 } from 'uuid';
-import * as jose from 'jose';
+import React, { useCallback, useEffect, useState } from "react";
+import { Button, Form, Input, Radio, Select } from "antd";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { currentUserState, userListState } from "../recoil/atom";
+import { v4 } from "uuid";
+import * as jose from "jose";
 
 const CustomForm: React.FC = () => {
   const [form] = Form.useForm();
   const [, setUsers] = useRecoilState(userListState);
   const currentUser = useRecoilValue(currentUserState);
   const [currentEnvironment, setCurrentEnvironment] = useState<string>(
-    'http://localhost:3000/api/connect'
+    "http://localhost:3000/api/connect"
   );
 
   const onSubmit = async () => {
     if (!currentEnvironment) {
-      alert('Please select environment');
+      alert("Please select environment");
       return;
     }
     const values = form.getFieldsValue();
-    console.log('values', values);
 
-    const secret = new TextEncoder().encode('SVHDuE943rf5a8ZXs');
+    console.log(values);
+
+    const secret = new TextEncoder().encode("SVHDuE943rf5a8ZXs");
 
     const token = await new jose.SignJWT(values)
-      .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
+      .setProtectedHeader({ alg: "HS256", typ: "JWT" })
       .sign(secret);
 
     const hiddenForm = document.getElementById(
-      'hidden-form'
+      "hidden-form"
     ) as HTMLFormElement;
 
-    let hiddenInput = document.getElementsByName('token')[0];
-    hiddenForm.setAttribute('action', values.environment);
-    console.log('hiddenInput', hiddenInput);
+    let hiddenInput = document.getElementsByName("token")[0];
+    hiddenForm.setAttribute("action", values.environment);
+    console.log("hiddenInput", hiddenInput);
     if (!hiddenInput) {
-      hiddenInput = document.createElement('input');
-      hiddenInput.setAttribute('type', 'hidden');
-      hiddenInput.setAttribute('name', 'token');
-      hiddenInput.setAttribute('value', token);
+      hiddenInput = document.createElement("input");
+      hiddenInput.setAttribute("type", "hidden");
+      hiddenInput.setAttribute("name", "token");
+      hiddenInput.setAttribute("value", token);
       hiddenForm.appendChild(hiddenInput);
     } else {
-      hiddenInput.setAttribute('value', token);
+      hiddenInput.setAttribute("value", token);
     }
 
     hiddenForm.submit();
@@ -54,7 +55,7 @@ const CustomForm: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log('currentUser', currentUser);
+    console.log("currentUser", currentUser);
     form.setFieldsValue(currentUser);
   }, [currentUser, form]);
 
@@ -74,12 +75,12 @@ const CustomForm: React.FC = () => {
         wrapperCol={{ span: 12 }}
         layout="horizontal"
         initialValues={{
-          roles: 'STUDENT',
-          environment: 'http://localhost:3000/api/connect',
+          roles: "STUDENT",
+          environment: "http://localhost:3000/api/connect",
         }}
         size="middle"
         onFinish={onSubmit}
-        onFinishFailed={() => alert('Please fill all required fields')}
+        onFinishFailed={() => alert("Please fill all required fields")}
       >
         <Form.Item label="Environment" name="environment" required>
           <Radio.Group onChange={onEnvironmentChange}>
