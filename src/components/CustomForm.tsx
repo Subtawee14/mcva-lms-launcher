@@ -20,8 +20,8 @@ const CustomForm: React.FC = () => {
         backend: 'http://localhost:4400'
       },
       dev: {
-        frontend: 'https://epbeqhq3ef.ap-southeast-1.awsapprunner.com',
-        backend: 'https://3ibrimpbub.ap-southeast-1.awsapprunner.com'
+        frontend: 'https://dev-map.mycourseville.com',
+        backend: 'https://api.dev-map.mycourseville.com'
       },
       staging: {
         frontend: 'https://staging-map.mycourseville.com',
